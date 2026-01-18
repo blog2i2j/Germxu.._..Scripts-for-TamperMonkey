@@ -1,4 +1,7 @@
 // ==UserScript==
+// @namespace    https://github.com/Germxu
+// @homepage     https://github.com/Germxu/Scripts-for-TamperMonkey
+// @supportURL   https://github.com/Germxu/Scripts-for-TamperMonkey/issues/new
 // @name          Show Password by double-click
 // @name:zh-CN    双击查看密码
 // @namespace     https://github.com/Germxu
