@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Show Password by double-click
 // @name:zh-CN    双击查看密码
-// @version       2.0
+// @version       2.1
 // @author        Finn
 // @namespace    https://github.com/Germxu
 // @homepage     https://github.com/Germxu/Scripts-for-TamperMonkey
@@ -9,7 +9,7 @@
 // @description   😎 Double-click to show password, with an adaptive overlay copy button, auto-hide in 5s
 // @description:zh-CN  😎双击显示密码，输入框尾部覆盖自适应复制按钮，5秒自动隐藏
 // @include       *
-// @grant         none
+// @grant         GM_setClipboard
 // @require       https://cdn.jsdelivr.net/npm/qmsg@1.2.1
 // @license       MIT
 // ==/UserScript==
@@ -93,14 +93,24 @@
             btn.onclick = (event) => {
                 event.preventDefault();
                 event.stopPropagation();
-                navigator.clipboard.writeText(el.value).then(() => {
+
+                try {
+                    // 使用油猴提供的 GM API，几乎不会被网页 CSP 拦截
+                    GM_setClipboard(el.value, "text");
+
                     btn.innerText = t.copied;
-                    btn.style.backgroundColor = '#67c23a'; // 成功绿
+                    btn.style.backgroundColor = '#67c23a';
                     setTimeout(() => {
-                        btn.innerText = t.copy;
-                        btn.style.backgroundColor = '#409eff';
+                        if (btn.parentNode) {
+                            btn.innerText = t.copy;
+                            btn.style.backgroundColor = '#409eff';
+                        }
                     }, 1000);
-                });
+                } catch (err) {
+                    console.error('Copy failed:', err);
+                    if (typeof Qmsg !== 'undefined') Qmsg.error("Copy failed");
+                }
+
             };
 
             // --- 统一清理逻辑 ---
