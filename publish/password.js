@@ -1,13 +1,12 @@
 // ==UserScript==
+// @name          Show Password by double-click
+// @version       2.0
+// @author        Finn
 // @namespace    https://github.com/Germxu
 // @homepage     https://github.com/Germxu/Scripts-for-TamperMonkey
 // @supportURL   https://github.com/Germxu/Scripts-for-TamperMonkey/issues/new
-// @name          Show Password by double-click
-// @name:zh-CN    双击查看密码
-// @namespace     https://github.com/Germxu
-// @version       2.0
-// @author        Finn
 // @description   😎 Double-click to show password, with an adaptive overlay copy button, auto-hide in 5s
+// @name:zh-CN    双击查看密码
 // @description:zh-CN  😎双击显示密码，输入框尾部覆盖自适应复制按钮，5秒自动隐藏
 // @include       *
 // @grant         none
